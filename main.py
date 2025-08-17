@@ -16,33 +16,12 @@ def quick_sort_nombre(lista):
         return lista
 
     pivote = lista[0]
-    menores = [x for x in lista[1:] if x < pivote]
-    iguales = [x for x in lista if x == pivote]
-    mayores = [x for x in lista[1:] if x > pivote]
+    menores = [x for x in lista[1:] if x[1].nombre < pivote[1].nombre]
+    iguales = [x for x in lista if x[1].nombre == pivote[1].nombre]
+    mayores = [x for x in lista[1:] if x[1].nombre > pivote[1].nombre]
 
-    return quick_sort_nombre(menores)+iguales+quick_sort_nombre(mayores)
+    return quick_sort_nombre(menores) + iguales + quick_sort_nombre(mayores)
 
-def quick_sort_precio(lista):
-    if len(lista) <= 1:
-        return lista
-
-    pivote = lista[0]
-    menores = [x for x in lista[1:] if x < pivote]
-    iguales = [x for x in lista if x == pivote]
-    mayores = [x for x in lista[1:] if x > pivote]
-
-    return quick_sort_precio(menores)+iguales+quick_sort_precio(mayores)
-
-def quick_sort_stock(lista):
-    if len(lista) <= 1:
-        return lista
-
-    pivote = lista[0]
-    menores = [x for x in lista[1:] if x < pivote]
-    iguales = [x for x in lista if x == pivote]
-    mayores = [x for x in lista[1:] if x > pivote]
-
-    return quick_sort_stock(menores)+iguales+quick_sort_stock(mayores)
 
 class GestionTienda:
     def __init__(self):
@@ -88,9 +67,12 @@ class GestionTienda:
     def ListaProductos(self):
         print("\nLista de Productos:")
         try:
+            lista_tienda = list(self.Tienda.items())
             opcion_orden = int(input("Como desea ver el orden de los productos: (1.Nombre del Producto, 2. Precio del Producto, 3. Stock del Producto)"))
             if opcion_orden == 1:
-                pass
+                orden_nombre = quick_sort_nombre(lista_tienda)
+                for codigo, informacion in orden_nombre:
+                    print(f"Codigo: {codigo}- Nombre: {informacion.nombre}, Precio: {informacion.precio}, Stock: {informacion.stock}")
             elif opcion_orden == 2:
                 pass
             elif opcion_orden == 3:
@@ -108,3 +90,4 @@ class GestionTienda:
 registro = GestionTienda()
 
 registro.AgregarProducto()
+registro.ListaProductos()
