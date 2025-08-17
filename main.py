@@ -9,6 +9,20 @@ class Tienda:
     def VerInfo(self):
         return f"Codigo: {self.codigo} - Nombre del Producto: {self.nombre} - Categoria: {self.categoria} - Precio: Q.{self.precio} - Stock: {self.stock} unidades "
 
+
+#Creo los quick sort para ordenarlo
+def quick_sort_nombre(lista):
+    if len(lista) <= 1:
+        return lista
+
+    pivote = lista[0]
+    menores = [x for x in lista[1:] if x[1].nombre < pivote[1].nombre]
+    iguales = [x for x in lista if x[1].nombre == pivote[1].nombre]
+    mayores = [x for x in lista[1:] if x[1].nombre > pivote[1].nombre]
+
+    return quick_sort_nombre(menores) + iguales + quick_sort_nombre(mayores)
+
+
 class GestionTienda:
     def __init__(self):
         self.Tienda = {}
@@ -51,8 +65,22 @@ class GestionTienda:
         print("Producto Agregado Exitosamente...")
 
     def ListaProductos(self):
-        pass #Aqui hace tu chance jeanca xdxd
-
+        print("\nLista de Productos:")
+        try:
+            lista_tienda = list(self.Tienda.items())
+            opcion_orden = int(input("Como desea ver el orden de los productos: (1.Nombre del Producto, 2. Precio del Producto, 3. Stock del Producto)"))
+            if opcion_orden == 1:
+                orden_nombre = quick_sort_nombre(lista_tienda)
+                for codigo, informacion in orden_nombre:
+                    print(f"Codigo: {codigo}- Nombre: {informacion.nombre}, Precio: {informacion.precio}, Stock: {informacion.stock}")
+            elif opcion_orden == 2:
+                pass
+            elif opcion_orden == 3:
+                pass
+            else:
+                print("error- La opcion que escogio no esta en las que se tiene disponible, volvera al menu")
+        except ValueError:
+            input("error- opcion no valido, presione enter para continuar ")
     def BuscarProducto(self):
         print("")
 
@@ -62,3 +90,4 @@ class GestionTienda:
 registro = GestionTienda()
 
 registro.AgregarProducto()
+registro.ListaProductos()
