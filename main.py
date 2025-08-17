@@ -1,3 +1,6 @@
+from unittest import case
+
+
 class Tienda:
     def __init__(self, codigo, nombre, categoria, precio, stock):
         self.codigo = codigo
@@ -51,35 +54,43 @@ class GestionTienda:
 
         print("--Sistema de Ingreso de Productos--")
 
-        codigo = input("\nCodigo del Producto: ")
-        if codigo in self.Tienda:
-            input("Codigo ingresado ya en exitencia, presione enter para continuar")
-            return
+        rango = int(input("Cuantos Productos desea Registrar?: "))
 
-        nombre = input("Nombre del Producto: ")
-        categoria = input("Categoria del Producto: ")
+        for i in range(rango):
 
-        while True:
-            try:
-             precio = float(input("Precio del Producto: "))
-             if precio < 0:
-                 input("error- precio no valido, presione enter para continuar ")
-                 continue #vuelve al inicio del while para pedir de nuevo el precio.
+            print(f"\nProducto No.{i+1}")
 
-             break #se ejecuta si el precio es correcto y te saca del while
-            except ValueError:
-                input("error- precio no valido, presione enter para volver a ingresarlo")
+            while True:
+                codigo = input("Codigo del Producto: ")
+                if codigo in self.Tienda:
+                    input("Codigo ingresado ya en exitencia, presione para volver a Ingresarlo")
+                    continue
+                break
 
-        while True:
-            try:
-             stock = int(input("Stock del Producto: "))
-             if precio <=0:
-                 input("error- stock no valido, presione enter para continuar ")
-                 continue
+            nombre = input("Nombre del Producto: ")
+            categoria = input("Categoria del Producto: ")
 
-             break
-            except ValueError:
-                input("error- Stock no valido, presione enter para volver a ingresarlo")
+            while True:
+                try:
+                    precio = float(input("Precio del Producto: "))
+                    if precio < 0:
+                        input("error- precio no valido, presione para volver a Ingresarlo")
+                        continue  # vuelve al inicio del while para pedir de nuevo el precio.
+
+                    break  # se ejecuta si el precio es correcto y te saca del while
+                except ValueError:
+                    input("error- precio no valido, presione para volver a Ingresarlo")
+
+            while True:
+                try:
+                    stock = int(input("Stock del Producto: "))
+                    if precio <= 0:
+                        input("error- stock no valido, presione para volver a Ingresarlo ")
+                        continue
+
+                    break
+                except ValueError:
+                    input("error- Stock no valido, presione para volver a Ingresarlo")
 
         self.Tienda[codigo] = Tienda(codigo, nombre, categoria, precio, stock)
         print("Producto Agregado Exitosamente...")
@@ -109,8 +120,7 @@ class GestionTienda:
         except ValueError:
             input("error- opcion no valido, presione enter para continuar ")
     def BuscarProducto(self):
-        print("")
-
+        pass
 
 
 
@@ -120,13 +130,23 @@ while True:
     print("1. Agregar Producto")
     print("2. Listar Productos")
     print("3. Buscar Producto")
-    print("4. Salir")
+    print("4. Modificar o Eliminar Producto")
+    print("5. Salir")
     try:
         opcion = int(input("Ingrese una opcion: "))
-        if opcion == 1:
-            registro.AgregarProducto()
-        elif opcion == 2:
-            registro.ListaProductos()
+        match opcion:
+            case 1:
+                registro.AgregarProducto()
+            case 2:
+                registro.ListaProductos()
+            case 3:
+                pass
+            case 4:
+                pass
+            case 5:
+                print("Gracia por utilizar el programa")
+                print("Saliendo...")
+                break
     except ValueError:
         input("error- opcion no valido, presione enter para continuar ")
 
