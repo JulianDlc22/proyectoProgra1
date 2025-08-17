@@ -30,7 +30,7 @@ def quick_sort_precio(lista):
     iguales = [x for x in lista if x[1].precio == pivote[1].precio]
     mayores = [x for x in lista[1:] if x[1].precio > pivote[1].precio]
 
-    return quick_sort_precio(menores) + iguales + quick_sort_precio(mayores)
+    return quick_sort_precio(mayores) + iguales + quick_sort_precio(menores)
 
 def quick_sort_stock(lista):
     if len(lista) <= 1:
@@ -41,7 +41,7 @@ def quick_sort_stock(lista):
     iguales = [x for x in lista if x[1].stock == pivote[1].stock]
     mayores = [x for x in lista[1:] if x[1].stock > pivote[1].stock]
 
-    return quick_sort_stock(menores) + iguales + quick_sort_stock(mayores)
+    return quick_sort_stock(mayores) + iguales + quick_sort_stock(menores)
 
 class GestionTienda:
     def __init__(self):
@@ -91,19 +91,19 @@ class GestionTienda:
         print("\nLista de Productos:")
         try:
             lista_tienda = list(self.Tienda.items())
-            opcion_orden = int(input("Como desea ver el orden de los productos: (1.Nombre del Producto, 2. Precio del Producto, 3. Stock del Producto)"))
+            opcion_orden = int(input("Como desea ver el orden de los productos (1.Nombre del Producto, 2. Precio del Producto, 3. Stock del Producto) : "))
             if opcion_orden == 1:
                 orden_nombre = quick_sort_nombre(lista_tienda)
                 for codigo, informacion in orden_nombre:
-                    print(f"Codigo: {codigo}- Nombre: {informacion.nombre}, Precio: {informacion.precio}, Stock: {informacion.stock}")
+                    print(f"Codigo: {codigo} - Nombre: {informacion.nombre}, Precio: {informacion.precio}, Stock: {informacion.stock}")
             elif opcion_orden == 2:
                 orden_precio = quick_sort_precio(lista_tienda)
                 for codigo, informacion in orden_precio:
-                    print(f"Codigo: {codigo}- Nombre: {informacion.nombre}, Precio: {informacion.precio}, Stock: {informacion.stock}")
+                    print(f"Codigo: {codigo} - Nombre: {informacion.nombre}, Precio: {informacion.precio}, Stock: {informacion.stock}")
             elif opcion_orden == 3:
                 orden_stock = quick_sort_stock(lista_tienda)
                 for codigo, informacion in orden_stock:
-                    print(f"Codigo: {codigo}- Nombre: {informacion.nombre}, Precio: {informacion.precio}, Stock: {informacion.stock}")
+                    print(f"Codigo: {codigo} - Nombre: {informacion.nombre}, Precio: {informacion.precio}, Stock: {informacion.stock}")
             else:
                 print("error- La opcion que escogio no esta en las que se tiene disponible, volvera al menu")
         except ValueError:
@@ -129,3 +129,4 @@ while True:
             registro.ListaProductos()
     except ValueError:
         input("error- opcion no valido, presione enter para continuar ")
+
