@@ -9,6 +9,41 @@ class Tienda:
     def VerInfo(self):
         return f"Codigo: {self.codigo} - Nombre del Producto: {self.nombre} - Categoria: {self.categoria} - Precio: Q.{self.precio} - Stock: {self.stock} unidades "
 
+
+#Creo los quick sort para ordenarlo
+def quick_sort_nombre(lista):
+    if len(lista) <= 1:
+        return lista
+
+    pivote = lista[0]
+    menores = [x for x in lista[1:] if x < pivote]
+    iguales = [x for x in lista if x == pivote]
+    mayores = [x for x in lista[1:] if x > pivote]
+
+    return quick_sort_nombre(menores)+iguales+quick_sort_nombre(mayores)
+
+def quick_sort_precio(lista):
+    if len(lista) <= 1:
+        return lista
+
+    pivote = lista[0]
+    menores = [x for x in lista[1:] if x < pivote]
+    iguales = [x for x in lista if x == pivote]
+    mayores = [x for x in lista[1:] if x > pivote]
+
+    return quick_sort_precio(menores)+iguales+quick_sort_precio(mayores)
+
+def quick_sort_stock(lista):
+    if len(lista) <= 1:
+        return lista
+
+    pivote = lista[0]
+    menores = [x for x in lista[1:] if x < pivote]
+    iguales = [x for x in lista if x == pivote]
+    mayores = [x for x in lista[1:] if x > pivote]
+
+    return quick_sort_stock(menores)+iguales+quick_sort_stock(mayores)
+
 class GestionTienda:
     def __init__(self):
         self.Tienda = {}
@@ -51,8 +86,19 @@ class GestionTienda:
         print("Producto Agregado Exitosamente...")
 
     def ListaProductos(self):
-        pass #Aqui hace tu chance jeanca xdxd
-
+        print("\nLista de Productos:")
+        try:
+            opcion_orden = int(input("Como desea ver el orden de los productos: (1.Nombre del Producto, 2. Precio del Producto, 3. Stock del Producto)"))
+            if opcion_orden == 1:
+                pass
+            elif opcion_orden == 2:
+                pass
+            elif opcion_orden == 3:
+                pass
+            else:
+                print("error- La opcion que escogio no esta en las que se tiene disponible, volvera al menu")
+        except ValueError:
+            input("error- opcion no valido, presione enter para continuar ")
     def BuscarProducto(self):
         print("")
 
