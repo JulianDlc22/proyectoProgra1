@@ -184,7 +184,44 @@ class GestionTienda:
 
 
     def modificar_producto(self):
-        pass
+        if not self.Tienda:
+            print("No hay productos ingresados")
+            return
+        print("\nModificar Producto")
+        codigo_modificar = input("Ingrese codigo del producto que desea modificar: ")
+        if codigo_modificar in self.Tienda:
+            producto = self.Tienda[codigo_modificar]
+            print("Información actual del producto:")
+            print(producto.ver_info())
+            while True:
+                try:
+                    opcion_modificar = int(input("¿Qué desea modificar del producto? (1. Precio, 2. Stock, 3. Ambas): "))
+                    if opcion_modificar == 1:
+                        nuevo_precio = float(input("Nuevo precio del producto: "))
+                        producto.precio = nuevo_precio
+                        print("Precio actualizado correctamente.")
+                        break
+                    elif opcion_modificar == 2:
+                        nuevo_stock = int(input("Nuevo stock del producto: "))
+                        producto.stock = nuevo_stock
+                        print("Stock actualizado correctamente.")
+                        break
+                    elif opcion_modificar == 3:
+                        nuevo_precio = float(input("Nuevo precio del producto: "))
+                        nuevo_stock = int(input("Nuevo stock del producto: "))
+                        producto.precio = nuevo_precio
+                        producto.stock = nuevo_stock
+                        print("Precio y stock actualizados correctamente.")
+                        break
+                    else:
+                        print("Opción no válida, intente nuevamente.")
+                except ValueError:
+                    print("Error: Ingrese un valor numérico válido.")
+                    print("Volvera al menu")
+                    break
+        else:
+            print("El código ingresado no existe.")
+
     def eliminar_producto(self):
         pass
 
@@ -196,7 +233,8 @@ while True:
     print("1. Agregar Producto")
     print("2. Listar Productos")
     print("3. Buscar Producto")
-    print("4. Modificar o Eliminar Producto")
+    print("4. Modificar Producto")
+    print("5. Eliminar Producto")
     print("5. Salir")
     try:
         opcion = int(input("Ingrese una opcion: "))
@@ -208,8 +246,10 @@ while True:
             case 3:
                 registro.buscar_producto()
             case 4:
-                pass
+                registro.modificar_producto()
             case 5:
+                registro.eliminar_producto()
+            case 6:
                 print("Gracia por utilizar el programa")
                 print("Saliendo...")
                 break
