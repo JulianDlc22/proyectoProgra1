@@ -9,7 +9,7 @@ class Tienda:
         self.precio = precio
         self.stock = stock
 
-    def VerInfo(self):
+    def ver_info(self):
         return f"Codigo: {self.codigo} - Nombre del Producto: {self.nombre} - Categoria: {self.categoria} - Precio: Q.{self.precio} - Stock: {self.stock} unidades "
 
 #Creo los quick sort para ordenarlo
@@ -50,7 +50,7 @@ class GestionTienda:
     def __init__(self):
         self.Tienda = {}
 
-    def AgregarProducto(self):
+    def agregar_producto(self):
 
         print("--Sistema de Ingreso de Productos--")
 
@@ -95,7 +95,7 @@ class GestionTienda:
         self.Tienda[codigo] = Tienda(codigo, nombre, categoria, precio, stock)
         print("Producto Agregado Exitosamente...")
 
-    def ListaProductos(self):
+    def lista_productos(self):
         if not self.Tienda:
             print("No hay productos ingresados")
             return
@@ -119,7 +119,11 @@ class GestionTienda:
                 print("error- La opcion que escogio no esta en las que se tiene disponible, volvera al menu")
         except ValueError:
             input("error- opcion no valido, presione enter para continuar ")
-    def BuscarProducto(self):
+    def buscar_producto(self):
+        pass
+    def modificar_producto(self):
+        pass
+    def eliminar_producto(self):
         pass
 
 
@@ -136,9 +140,9 @@ while True:
         opcion = int(input("Ingrese una opcion: "))
         match opcion:
             case 1:
-                registro.AgregarProducto()
+                registro.agregar_producto()
             case 2:
-                registro.ListaProductos()
+                registro.lista_productos()
             case 3:
                 pass
             case 4:
