@@ -118,11 +118,38 @@ class GestionTienda:
             else:
                 print("error- La opcion que escogio no esta en las que se tiene disponible, volvera al menu")
         except ValueError:
-            input("error- opcion no valido, presione enter para continuar ")
+            input("error- opcion no valida, presione enter para continuar ")
     def buscar_producto(self):
         pass
+
     def modificar_producto(self):
-        pass
+        if not self.Tienda:
+            print("No hay productos ingresados")
+            return
+        print("\nModificar Producto")
+        codigo_modificar = input("Ingrese codigo del producto que desea modificar: ")
+        if codigo_modificar in self.Tienda:
+            producto = self.Tienda[codigo_modificar]
+            print("Información actual del producto:")
+            print(producto.ver_info())
+            while True:
+                try:
+                    opcion_modificar = int(input("Que desea modificar el producto? (1.Precio, 2.Stock o 3.Ambas): "))
+                    if opcion_modificar == 1:
+                        pass
+                    elif opcion_modificar == 2:
+                        pass
+                    elif opcion_modificar == 3:
+                        pass
+                    else:
+                        print("error- opcion no valida, presione enter para continuar ")
+                        continue
+                except ValueError:
+                    print("error - Opcion ingresada no valida, solo se permite ingreso numerico")
+                    break
+        else:
+            print("El código ingresado no existe.")
+
     def eliminar_producto(self):
         pass
 
@@ -146,7 +173,7 @@ while True:
             case 3:
                 pass
             case 4:
-                pass
+                registro.modificar_producto()
             case 5:
                 print("Gracia por utilizar el programa")
                 print("Saliendo...")
