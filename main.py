@@ -1,3 +1,4 @@
+from operator import truediv
 from unittest import case
 
 
@@ -52,7 +53,7 @@ class GestionTienda:
 
     def AgregarProducto(self):
 
-        print("--Sistema de Ingreso de Productos--")
+        print("\n--Sistema de Ingreso de Productos--")
 
         rango = int(input("Cuantos Productos desea Registrar?: "))
 
@@ -92,8 +93,12 @@ class GestionTienda:
                 except ValueError:
                     input("error- Stock no valido, presione para volver a Ingresarlo")
 
-        self.Tienda[codigo] = Tienda(codigo, nombre, categoria, precio, stock)
-        print("Producto Agregado Exitosamente...")
+            self.Tienda[codigo] = Tienda(codigo, nombre, categoria, precio, stock)
+            print("\nProducto Agregado Exitosamente...")
+
+        print(" ")
+
+
 
     def ListaProductos(self):
         if not self.Tienda:
@@ -118,9 +123,35 @@ class GestionTienda:
             else:
                 print("error- La opcion que escogio no esta en las que se tiene disponible, volvera al menu")
         except ValueError:
-            input("error- opcion no valido, presione enter para continuar ")
+            input("error- opcion no valida, presione enter para continuar ")
+
     def BuscarProducto(self):
-        pass
+
+        while True:
+            print("\n--Menu de Busqueda--")
+            print("1. Por Codigo")
+            print("2. Por Nombre")
+            print("3. Por Categoria")
+            print("4. Salir")
+
+            opcion = input("\nOpcion de la busqueda: ")
+
+            try:
+                op = int(opcion)
+
+                match op:
+                    case 1:
+                        buscarCodigo = input("Ingrese el Codigo del Producto: ")
+                        if buscarCodigo in self.Tienda:
+                            producto = self.Tienda[buscarCodigo]
+                            producto.Verinfo()
+
+
+
+
+            except ValueError:
+                print("error- opcion no valida, presione enter para continuar ")
+                continue
 
 
 
@@ -140,7 +171,7 @@ while True:
             case 2:
                 registro.ListaProductos()
             case 3:
-                pass
+                registro.BuscarProducto()
             case 4:
                 pass
             case 5:
