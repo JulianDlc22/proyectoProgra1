@@ -134,18 +134,29 @@ class GestionTienda:
             print(producto.ver_info())
             while True:
                 try:
-                    opcion_modificar = int(input("Que desea modificar el producto? (1.Precio, 2.Stock o 3.Ambas): "))
+                    opcion_modificar = int(input("¿Qué desea modificar del producto? (1. Precio, 2. Stock, 3. Ambas): "))
                     if opcion_modificar == 1:
-                        pass
+                        nuevo_precio = float(input("Nuevo precio del producto: "))
+                        producto.precio = nuevo_precio
+                        print("Precio actualizado correctamente.")
+                        break
                     elif opcion_modificar == 2:
-                        pass
+                        nuevo_stock = int(input("Nuevo stock del producto: "))
+                        producto.stock = nuevo_stock
+                        print("Stock actualizado correctamente.")
+                        break
                     elif opcion_modificar == 3:
-                        pass
+                        nuevo_precio = float(input("Nuevo precio del producto: "))
+                        nuevo_stock = int(input("Nuevo stock del producto: "))
+                        producto.precio = nuevo_precio
+                        producto.stock = nuevo_stock
+                        print("Precio y stock actualizados correctamente.")
+                        break
                     else:
-                        print("error- opcion no valida, presione enter para continuar ")
-                        continue
+                        print("Opción no válida, intente nuevamente.")
                 except ValueError:
-                    print("error - Opcion ingresada no valida, solo se permite ingreso numerico")
+                    print("Error: Ingrese un valor numérico válido.")
+                    print("Volvera al menu")
                     break
         else:
             print("El código ingresado no existe.")
@@ -161,7 +172,8 @@ while True:
     print("1. Agregar Producto")
     print("2. Listar Productos")
     print("3. Buscar Producto")
-    print("4. Modificar o Eliminar Producto")
+    print("4. Modificar Producto")
+    print("5. Eliminar Producto")
     print("5. Salir")
     try:
         opcion = int(input("Ingrese una opcion: "))
@@ -175,6 +187,8 @@ while True:
             case 4:
                 registro.modificar_producto()
             case 5:
+                registro.eliminar_producto()
+            case 6:
                 print("Gracia por utilizar el programa")
                 print("Saliendo...")
                 break
