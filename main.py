@@ -11,7 +11,7 @@ class Tienda:
         self.stock = stock
 
     def ver_info(self):
-        return f"Codigo: {self.codigo} - Nombre del Producto: {self.nombre} - Categoria: {self.categoria} - Precio: Q.{self.precio} - Stock: {self.stock} unidades "
+        return f"Codigo: {self.codigo} / Nombre del Producto: {self.nombre} / Categoria: {self.categoria} / Precio: Q{self.precio} / Stock: {self.stock} unidades "
 
 #Creo los quick sort para ordenarlo
 def quick_sort_nombre(lista):
@@ -68,8 +68,8 @@ class GestionTienda:
                     continue
                 break
 
-            nombre = input("Nombre del Producto: ")
-            categoria = input("Categoria del Producto: ")
+            nombre = input("Nombre del Producto: ").lower()
+            categoria = input("Categoria del Producto: ").lower()
 
             while True:
                 try:
@@ -125,7 +125,7 @@ class GestionTienda:
         except ValueError:
             input("error- opcion no valida, presione enter para continuar ")
 
-    def BuscarProducto(self):
+    def buscar_producto(self):
 
         while True:
             print("\n--Menu de Busqueda--")
@@ -141,20 +141,48 @@ class GestionTienda:
 
                 match op:
                     case 1:
-                        buscarCodigo = input("Ingrese el Codigo del Producto: ")
-                        if buscarCodigo in self.Tienda:
-                            producto = self.Tienda[buscarCodigo]
-                            producto.Verinfo()
+                        buscar_codigo = input("Ingrese el Codigo del Producto: ")
+                        if buscar_codigo in self.Tienda:
+                            producto = self.Tienda[buscar_codigo]
+                            print(f"Producto Encontrado: {producto.ver_info()}")
 
+                    case 2:
+                        buscar_nombre = input("Ingrese el Nombre: ").lower()
+                        encontrado = False
+                        for producto in self.Tienda.values():
+                            if producto.nombre.lower() == buscar_nombre:
+                                print(f"Producto Encontrado: {producto.ver_info()}")
+                                encontrado = True
 
+                        if not encontrado:
+                            print("error- producto no encontrado")
 
+                    case 3:
+                        buscar_categoria = input("Ingrese el Categoria: ").lower()
+                        encontrado = False
+                        for producto in self.Tienda.values():
+                            if producto.categoria.lower() == buscar_categoria:
+                                print(f"Producto Encontrado: {producto.ver_info()}")
+                                encontrado = True
+
+                        if not encontrado:
+                            print("error- producto no encontrado")
+
+                    case 4:
+                        print("Saliendo al menu principal")
+                        print("Presione enter para continuar")
+                        input()
+                        break
+
+                    case _:
+                        print("opcion no valida, presione enter para continuar")
+                        input()
 
             except ValueError:
                 print("error- opcion no valida, presione enter para continuar ")
                 continue
-            input("error- opcion no valido, presione enter para continuar ")
-    def buscar_producto(self):
-        pass
+
+
     def modificar_producto(self):
         pass
     def eliminar_producto(self):
@@ -178,7 +206,7 @@ while True:
             case 2:
                 registro.lista_productos()
             case 3:
-                registro.BuscarProducto()
+                registro.buscar_producto()
             case 4:
                 pass
             case 5:
