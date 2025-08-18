@@ -1,7 +1,3 @@
-from operator import truediv
-from unittest import case
-
-
 class Tienda:
     def __init__(self, codigo, nombre, categoria, precio, stock):
         self.codigo = codigo
@@ -198,21 +194,33 @@ class GestionTienda:
                     opcion_modificar = int(input("¿Qué desea modificar del producto? (1. Precio, 2. Stock, 3. Ambas): "))
                     if opcion_modificar == 1:
                         nuevo_precio = float(input("Nuevo precio del producto: "))
-                        producto.precio = nuevo_precio
-                        print("Precio actualizado correctamente.")
-                        break
+                        if nuevo_precio>0 :
+                            producto.precio = nuevo_precio
+                            print("Precio actualizado correctamente.")
+                            break
+                        else:
+                            print("Error: Precio no puede ser inferior a 1")
                     elif opcion_modificar == 2:
                         nuevo_stock = int(input("Nuevo stock del producto: "))
-                        producto.stock = nuevo_stock
-                        print("Stock actualizado correctamente.")
-                        break
+                        if nuevo_stock>0 :
+                            producto.stock = nuevo_stock
+                            print("Stock actualizado correctamente.")
+                            break
+                        else:
+                            print("Error: Stock no puede ser inferior a 1")
                     elif opcion_modificar == 3:
                         nuevo_precio = float(input("Nuevo precio del producto: "))
-                        nuevo_stock = int(input("Nuevo stock del producto: "))
-                        producto.precio = nuevo_precio
-                        producto.stock = nuevo_stock
-                        print("Precio y stock actualizados correctamente.")
-                        break
+                        if nuevo_precio>0 :
+                            nuevo_stock = int(input("Nuevo stock del producto: "))
+                            if nuevo_stock>0 :
+                                producto.precio = nuevo_precio
+                                producto.stock = nuevo_stock
+                                print("Precio y stock actualizados correctamente.")
+                                break
+                            else:
+                                print("Error: Stock no puede ser inferior a 1")
+                        else:
+                            print("Error: Precio no puede ser inferior a 1")
                     else:
                         print("Opción no válida, intente nuevamente.")
                 except ValueError:
