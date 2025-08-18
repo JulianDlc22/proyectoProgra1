@@ -223,7 +223,33 @@ class GestionTienda:
             print("El código ingresado no existe.")
 
     def eliminar_producto(self):
-        pass
+        if not self.Tienda:
+            print("No hay productos ingresados")
+            return
+        print("\nEliminar Producto")
+        while True:
+            codigo_eliminar = input("Ingrese código del producto que desea eliminar: ")
+            if codigo_eliminar in self.Tienda:
+                producto = self.Tienda[codigo_eliminar]
+                print("Información del producto:")
+                print(producto.ver_info())
+                while True: #Se utiliza un bucle adentro para que el usuario hasta que ponga una opcion correcta se salga del ciclo
+                    try:
+                        confirmacion = int(input("¿Desea eliminar el producto? (1.Sí, 2.No): "))
+                        if confirmacion == 1:
+                            del self.Tienda[codigo_eliminar]
+                            print("Producto eliminado correctamente.")
+                            break
+                        elif confirmacion == 2:
+                            print("El producto no fue eliminado")
+                            break
+                        else:
+                            print("Opción no válida, intente nuevamente.")
+                    except ValueError:
+                        print("Error: Solo se permite datos numéricos.")
+                break
+            else:
+                print("Código ingresado no existe, intente nuevamente.")
 
 
 
